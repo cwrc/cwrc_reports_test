@@ -1,0 +1,30 @@
+<html>
+	<head>		
+		<script src="lib/jquery-2.1.4.min.js"></script>
+		<script src="lib/knockout-3.3.0.js"></script>
+		<script src="js/test.js"></script>
+		<script src="js/cwrc-report-api.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="css/test.css">
+		
+	</head>
+    <body class="root">
+        <div id="query">
+            <p>ID: <input data-bind="value: pid" /></p>
+            <p><button data-bind="click: runReports">run</button></p>
+            <p>debug: <span data-bind="text: pid_read" /></p>
+        </div>
+
+        <fieldset>
+            <legend>Report #1:</legend>
+            <div class="result_container" id="div_bibcit_report"/>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Report #2:</legend>
+            <div class="result_container" id="div_name_report"/>
+            </div>
+        </fieldset>
+    </body>
+</html>
+
