@@ -11,7 +11,7 @@ function cwrcReportsAPI(url, jq) {
     }
 
     // Public Functions
-    this.executeReport = function(updateUICallback){
+    this.executeReport = function(updateUICallback,reportObj){
         var result = result;
 
         // async - http://martinfowler.com/articles/asyncJS.html
@@ -21,7 +21,7 @@ function cwrcReportsAPI(url, jq) {
             async : true,
             dataType : "xml",
             data: {
-                //query: reportObj.query,
+                FEDORA_PID: reportObj.pid
             },
             success : function(data) {
                 result = data;
