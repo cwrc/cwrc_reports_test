@@ -8,10 +8,22 @@ $(document).ready(
         function viewModel() 
         {
             self = this;
+            //FEDORA PID form element
             self.pid = ko.observable("cwrc:johnp2-b");
+            // debugging
             self.pid_read = ko.observable("");
+
+            // loading messages
+            self.rpt_bibcit_loading = ko.observable(false);
+            self.rpt_workflow_loading = ko.observable(false);
+            self.rpt_researchnotes_loading = ko.observable(false);
+
+            // form button - run Reports
             self.runReports = function() {
                 self.pid_read( this.pid()!="" ? this.pid() : "");
+                self.rpt_bibcit_loading(true);
+                self.rpt_researchnotes_loading(true);
+                self.rpt_workflow_loading(true);
                 cwrcReportsBibcit.executeReport(self.updateUI_BibcitReport,self);
                 cwrcReportsResearchnotes.executeReport(self.updateUI_ResearchnotesReport,self);
                 cwrcReportsWorkflow.executeReport(self.updateUI_WorkflowReport,self);
@@ -22,6 +34,7 @@ $(document).ready(
               //tmpXML = xmlToString(data.responseXML);
               tmpXML = (typeof(data)=='string') ? data : xmlToString(data);
               //$("#div_bibcit").html(response.responseText);
+              self.rpt_bibcit_loading(false);
               $("#div_bibcit_report").html(tmpXML);
               //$("#div_bibcit").html('<BIBCIT><div><li>a</li><li>b</li></div></BIBCIT>');
               
@@ -30,12 +43,14 @@ $(document).ready(
             // callback
             self.updateUI_ResearchnotesReport = function(data) {
               tmpXML = (typeof(data)=='string') ? data : xmlToString(data);
+              self.rpt_workflow_loading(false);
               $("#div_researchnote_report").html(tmpXML);
             }
 
             // callback
             self.updateUI_WorkflowReport = function(data) {
               tmpXML = (typeof(data)=='string') ? data : xmlToString(data);
+              self.rpt_researchnotes_loading(false);
               $("#div_workflow_report").html(tmpXML);
             }
 
