@@ -9,6 +9,10 @@
 		
 	</head>
     <body class="root">
+      <h1>Orlando CAS - Test</h1>
+      <div>
+        Attempt to create a process-oriented report to replace the functionally oriented set of reports used in the Doc Archive.  The aim is to give the person CAS'ing the doc all the information in one spot. Also, to create the page through a module set of components that can be reused elsewhere and to leverage an XML database to grab the important information. Does this work?
+      </div>
         <div id="query">
             <p>ID: <input data-bind="value: pid" /></p>
             <p><button data-bind="click: runReports">run</button></p>
@@ -28,6 +32,21 @@
         <fieldset>
           <legend>Workflow Lookup: <span class="loading" data-bind="visible: rpt_workflow_loading" ><span></legend>
             <div class="result_container" id="div_workflow_report"/>
+            </div>
+        </fieldset>
+        <fieldset>
+          <legend>Core Tag Lookup: <span class="loading" data-bind="visible: rpt_coretags_loading" ><span></legend>
+            <div class="result_container" id="div_coretags_report"/>
+            </div>
+        </fieldset>
+        <fieldset>
+          <legend>Quotes Lookup: <span class="loading" data-bind="visible: rpt_quotes_loading" ><span></legend>
+            <div class="result_container" id="div_quotes_report"/>
+            </div>
+        </fieldset>
+        <fieldset>
+          <legend>Chronstruct Bibcit Test: <span class="loading" data-bind="visible: rpt_chronstruct_bibcit_loading" ><span></legend>
+            <div class="result_container" id="div_chronstruct_bibcit_report"/>
             </div>
         </fieldset>
     </body>

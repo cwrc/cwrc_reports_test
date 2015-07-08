@@ -4,6 +4,9 @@ $(document).ready(
         var cwrcReportsBibcit = new cwrcReportsAPI('http://cwrc-dev-01.srv.ualberta.ca/islandora/cwrc_xmldb/v1/orlando_bibcit_lookup.xq', $);
         var cwrcReportsResearchnotes = new cwrcReportsAPI('http://cwrc-dev-01.srv.ualberta.ca/islandora/cwrc_xmldb/v1/orlando_researchnotes_lookup.xq', $);
         var cwrcReportsWorkflow = new cwrcReportsAPI('http://cwrc-dev-01.srv.ualberta.ca/islandora/cwrc_xmldb/v1/orlando_workflow_new.xq', $);
+        var cwrcReportsQuotes = new cwrcReportsAPI('http://cwrc-dev-01.srv.ualberta.ca/islandora/cwrc_xmldb/v1/orlando_quotes_lookup.xq', $);
+        var cwrcReportsCoreTags = new cwrcReportsAPI('http://cwrc-dev-01.srv.ualberta.ca/islandora/cwrc_xmldb/v1/orlando_core_tags_lookup.xq', $);
+        var cwrcReportsChronstructBibcits = new cwrcReportsAPI('http://cwrc-dev-01.srv.ualberta.ca/islandora/cwrc_xmldb/v1/orlando_chronstruct_bibcit_test.xq', $);
 
         function viewModel() 
         {
@@ -15,18 +18,31 @@ $(document).ready(
 
             // loading messages
             self.rpt_bibcit_loading = ko.observable(false);
-            self.rpt_workflow_loading = ko.observable(false);
             self.rpt_researchnotes_loading = ko.observable(false);
+            self.rpt_workflow_loading = ko.observable(false);
+            self.rpt_quotes_loading = ko.observable(false);
+            self.rpt_coretags_loading = ko.observable(false);
+            self.rpt_chronstruct_bibcit_loading = ko.observable(false);
 
             // form button - run Reports
             self.runReports = function() {
                 self.pid_read( this.pid()!="" ? this.pid() : "");
+
+                // set loading indicator
                 self.rpt_bibcit_loading(true);
                 self.rpt_researchnotes_loading(true);
                 self.rpt_workflow_loading(true);
+                self.rpt_quotes_loading(true);
+                self.rpt_coretags_loading(true);
+                self.rpt_chronstruct_bibcit_loading(true);
+
+                // execute AJAX call
                 cwrcReportsBibcit.executeReport(self.updateUI_BibcitReport,self);
                 cwrcReportsResearchnotes.executeReport(self.updateUI_ResearchnotesReport,self);
                 cwrcReportsWorkflow.executeReport(self.updateUI_WorkflowReport,self);
+                cwrcReportsQuotes.executeReport(self.updateUI_QuotesReport,self);
+                cwrcReportsCoreTags.executeReport(self.updateUI_CoreTagsReport,self);
+                cwrcReportsChronstructBibcits.executeReport(self.updateUI_ChronstructBibcitsReport,self);
             }
 
             // callback
@@ -43,15 +59,36 @@ $(document).ready(
             // callback
             self.updateUI_ResearchnotesReport = function(data) {
               tmpXML = (typeof(data)=='string') ? data : xmlToString(data);
-              self.rpt_workflow_loading(false);
+              self.rpt_researchnotes_loading(false);
               $("#div_researchnote_report").html(tmpXML);
             }
 
             // callback
             self.updateUI_WorkflowReport = function(data) {
               tmpXML = (typeof(data)=='string') ? data : xmlToString(data);
-              self.rpt_researchnotes_loading(false);
+              self.rpt_workflow_loading(false);
               $("#div_workflow_report").html(tmpXML);
+            }
+
+            // callback
+            self.updateUI_QuotesReport = function(data) {
+              tmpXML = (typeof(data)=='string') ? data : xmlToString(data);
+              self.rpt_quotes_loading(false);
+              $("#div_quotes_report").html(tmpXML);
+            }
+
+            // callback
+            self.updateUI_CoreTagsReport = function(data) {
+              tmpXML = (typeof(data)=='string') ? data : xmlToString(data);
+              self.rpt_coretags_loading(false);
+              $("#div_coretags_report").html(tmpXML);
+            }
+
+            // callback
+            self.updateUI_ChronstructBibcitsReport = function(data) {
+              tmpXML = (typeof(data)=='string') ? data : xmlToString(data);
+              self.rpt_chronstruct_bibcit_loading(false);
+              $("#div_chronstruct_bibcit_report").html(tmpXML);
             }
 
 
