@@ -3,6 +3,16 @@ div.result_container > BIBCIT
     color: #8888FF
 }
 
+.pub_c
+{
+    color: #006400;
+}
+
+.non_pub_c
+{
+    color: #9400d3;
+}
+
 .warning
 {
     color: #CC9900;
