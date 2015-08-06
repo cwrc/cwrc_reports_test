@@ -22,7 +22,7 @@
         <div id="query">
             <p>ID: <input data-bind="value: pid" /></p>
             <p><button data-bind="click: runReports">run</button></p>
-            <p>debug: <span data-bind="text: pid_read" /></p>
+            <p><span data-bind="text: pid_read" /></p>
         </div>
 
         <fieldset>
@@ -38,7 +38,7 @@
         <fieldset>
           <legend>Core Tag Lookup: <span class="loading" data-bind="visible: rpt_coretags_loading" ><span></legend>
               <div>
-                NOTE: could add different colour indicating entity not PUB-C, if useful.
+                NOTE: Only person and org elements are checked against the entity list (i.e. place and title are not). Would using a different colour to indicate the referenced entity is not PUB-C be useful? 
               </div>
             <div class="result_container" id="div_coretags_report"/>
             </div>
