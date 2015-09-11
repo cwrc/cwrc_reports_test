@@ -5,7 +5,7 @@
  * Requires jQuery
  * **/
 
-function cwrcReportsAPI(url, jq) {
+function cwrcTagAwareSearchAPI(url, jq) {
     if (!jq) {
         jq = $;
     }
@@ -14,7 +14,7 @@ function cwrcReportsAPI(url, jq) {
    
     
     // retrieve a JSON datastruct containing facets for a given XML query
-    this.executeReport = function(updateUICallback,queryObj){
+    this.executeFacets = function(updateUICallback,queryObj){
         var result = result;
 
         // async - http://martinfowler.com/articles/asyncJS.html
@@ -40,4 +40,36 @@ function cwrcReportsAPI(url, jq) {
 
         return result
     }
+
+ 
+    // retrieve an XML datastruct containing facets for a given XML query
+    this.executeSearch = function(updateUICallback,queryObj){
+        var result = result;
+
+        // async - http://martinfowler.com/articles/asyncJS.html
+        return jq.ajax({
+            url : url,  
+            type : 'POST',
+            async : true,
+            dataType : "xml",
+            data: {
+                QUERY_TERMS: queryObj.searchTerms
+            },
+            success : function(data) {
+                result = data;
+                updateUICallback(data);
+                //reportObj.success(result);
+            },
+            error : function(error) {
+                result = error;
+                updateUICallback(error.responseText);
+                //reportObj.error(error);
+            },
+        });
+
+        return result
+    }
+
+
+
 }

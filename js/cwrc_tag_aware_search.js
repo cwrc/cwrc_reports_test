@@ -3,33 +3,36 @@
 $(document).ready(
     function(){
 
-        var tasResultSearch = new cwrcReportsAPI('http://cwrc-dev-01.srv.ualberta.ca/islandora/cwrc_xmldb/v1/orlando_bibcit_lookup.xq', $);
-        var tasResultFacets = new cwrcReportsAPI('http://cwrc-dev-01.srv.ualberta.ca/islandora/cwrc_xmldb/v1/orlando_researchnotes_lookup.xq', $);
+        var tasResultSearch = new cwrcTagAwareSearchAPI('http://cwrc-dev-01.srv.ualberta.ca/islandora/cwrc_xmldb/v1/xml_tag_search.xq', $);
+        var tasResultFacets = new cwrcTagAwareSearchAPI('http://cwrc-dev-01.srv.ualberta.ca/islandora/cwrc_xmldb/v1/xml_tag_search_facets.xq', $);
 
-        function viewModel() 
-        {
+       function viewModel() 
+       {
             self = this;
-            //FEDORA PID form element
-            self.pid = ko.observable("cwrc:johnp2-b");
-            self.query_terms = ko.observable("('Pauline','Pauline')");
-            // debugging
-            self.pid_read = ko.observable("");
 
-            // loading messages
-            self.tas_results_search_loading = ko.observable(false);
-            self.tas_results_facets_loading = ko.observable(false);
+            self.init = function ()
+            {
+                self.query_terms = ko.observable("('Pauline','Pauline')");
+
+                // debugging
+                self.debug_text = ko.observable("");
+              
+                // loading messages
+                self.tas_results_search_loading = ko.observable(false);
+                self.tas_results_facets_loading = ko.observable(false);
+            }
 
             // form button - run Reports
             self.runReports = function() {
-                self.pid_read( this.pid()!="" ? this.pid() : "");
+                self.debug_text( this.query_terms()!="" ? this.query_terms() : "");
 
                 // set loading indicator
                 self.tas_results_search_loading(true);
                 self.tas_results_facets_loading(true);
 
                 // execute AJAX call
-                tasResultSearch.executeReport(self.updateUI_tasResultSearch,self);
-                tasResultFacets.executeReport(self.updateUI_tasResultFacets,self);
+                tasResultSearch.executeSearch(self.updateUI_tasResultSearch,self);
+                tasResultFacets.executeFacets(self.updateUI_tasResultFacets,self);
             }
 
             // callback
@@ -48,7 +51,11 @@ $(document).ready(
             }
 
         }
-        ko.applyBindings(new viewModel());
+
+
+        var viewModel = new viewModel();
+        viewModel.init();
+        ko.applyBindings(viewModel);
 
     }
 )
