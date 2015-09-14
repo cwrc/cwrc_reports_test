@@ -32,9 +32,27 @@ h2
   overflow:hidden;
 }
 
+
 #cwrc_tas_results_facets
 {
   float:left;
   width:25%;
   overflow:hidden;
+}
+
+#tas_facets_content 
+{
+  margin-left: 1em;
+  padding-left: 1em;
+  background-color: #EDEDED;
+}
+
+#tas_facets_content ul
+{
+  margin-left: 0px;
+  padding-left: 0px;
+}
+#tas_facets_content ul li
+{
+  list-style-type: none;
 }

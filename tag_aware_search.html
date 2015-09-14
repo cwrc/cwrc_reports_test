@@ -5,7 +5,7 @@
 		<script src="js/cwrc_tag_aware_search.js"></script>
 		<script src="js/cwrc_tag_aware_search_api.js"></script>
 
-		<link rel="stylesheet" type="text/css" href="css/tag_aware_search.css">
+        <link rel="stylesheet" type="text/css" href="css/tag_aware_search.css"></link>
 		
 	</head>
     <body class="root">
@@ -25,11 +25,19 @@
         <div id="cwrc_tas_results">
           <div id="cwrc_tas_results_search">
             <h3>Results: <span class="loading" data-bind="visible: tas_results_search_loading" ></span></h3>
-            <div class="result_container" id="tas_results_content"></div>
+            <xmp class="result_container" id="tas_results_content"></xmp>
           </div>
           <div id="cwrc_tas_results_facets">
             <h3>Facets: <span class="loading" data-bind="visible: tas_results_facets_loading" ></span></h3>
-            <div class="result_container" id="tas_facets_content"></div>
+            <div class="result_container" id="tas_facets_content">
+              <ul data-bind="foreach: query_facet_array">
+                <li>
+                <input type="checkbox" data-bind="value: facetId, checked: isSelected, attr: { id: 'tas_facets_cb_' + facetId() }" />
+                <label data-bind="text: Label, attr: { for: 'tas_facets_cb_' + facetId() }"></label>
+                </li>
+              </ul>
+              <div class="result_container" id="tas_facets_content_debug"></div>
+            </div>
           </div>
         </div>
     </body>

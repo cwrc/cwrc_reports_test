@@ -24,7 +24,7 @@ function cwrcTagAwareSearchAPI(url, jq) {
             async : true,
             dataType : "json",
             data: {
-                QUERY_TERMS: queryObj.searchTerms
+                QRY_TERMS: queryObj.query_terms
             },
             success : function(data) {
                 result = data;
@@ -53,7 +53,7 @@ function cwrcTagAwareSearchAPI(url, jq) {
             async : true,
             dataType : "xml",
             data: {
-                QUERY_TERMS: queryObj.searchTerms
+                QRY_TERMS: queryObj.query_terms
             },
             success : function(data) {
                 result = data;
