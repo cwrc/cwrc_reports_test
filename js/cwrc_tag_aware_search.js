@@ -57,6 +57,7 @@ $(document).ready(
             }
 
             // callback
+            // populated the "main results" component
             self.updateUI_tasResultSearch = function(data) {
               tmpXML = (typeof(data)=='string') ? data : xmlToString(data);
               self.tas_results_search_loading(false);
@@ -65,6 +66,7 @@ $(document).ready(
             }
 
             // callback
+            // populated the "facets" component
             self.updateUI_tasResultFacets = function(data) {
               data = '{ "k" : "2" , "l" : "3"  }';
               tmp = (typeof(data)=='string') ? $.parseJSON(data) : data;
@@ -88,6 +90,22 @@ $(document).ready(
               self.tas_results_facets_loading(false);
               $("#tas_facets_content_debug").html(JSON.stringify(tmp));
               //$("#tas_facets_content_debug").html(self.query_facet_array().serializeArray());
+            }
+
+            // searialize the checkbox facets
+            self.serializeCBData = function()
+            {
+              var tmp = "";
+              var len = self.query_facet_array().length;
+              for (var i = 0; i < len; i++)
+              {
+                if ( i!=0 )
+                {
+                  tmp = tmp + ",";
+                }
+                tmp = tmp + "\'" + (self.query_facet_array())[i].facetId() + "\'"
+              }
+              return tmp;
             }
 
         }
