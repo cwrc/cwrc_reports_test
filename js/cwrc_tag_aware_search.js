@@ -96,14 +96,20 @@ $(document).ready(
             self.serializeCBData = function()
             {
               var tmp = "";
+              var foundChecked = false;
               var len = self.query_facet_array().length;
               for (var i = 0; i < len; i++)
               {
-                if ( i!=0 )
+                if ( (self.query_facet_array())[i].isSelected() )
                 {
-                  tmp = tmp + ",";
+                  if ( foundChecked )
+                  {
+                    tmp = tmp + ",";
+                  }
+                  tmp = tmp + "\'" + (self.query_facet_array())[i].facetId() + "\'";
+                  foundChecked = true;
+
                 }
-                tmp = tmp + "\'" + (self.query_facet_array())[i].facetId() + "\'"
               }
               return '(' + tmp + ')';
             }
