@@ -68,7 +68,7 @@ $(document).ready(
             // callback
             // populated the "facets" component
             self.updateUI_tasResultFacets = function(data) {
-              data = '{ "k" : "2" , "l" : "3"  }';
+              //data = '{ "k" : "2" , "l" : "3"  }';
               tmp = (typeof(data)=='string') ? $.parseJSON(data) : data;
               for (key in tmp)
               {
@@ -105,7 +105,7 @@ $(document).ready(
                 }
                 tmp = tmp + "\'" + (self.query_facet_array())[i].facetId() + "\'"
               }
-              return tmp;
+              return '(' + tmp + ')';
             }
 
         }
