@@ -25,10 +25,12 @@ $(document).ready(
             {
                 // query terms
                 self.query_terms = ko.observable("{&apos;Pauline&apos;,&apos;Pauline&apos;}");
+                // query elements test 
+                self.query_elements = ko.observable("");
 
                 // query facets
                 self.query_facet_array = ko.observableArray();
-                self.query_facets_checked = ko.observableArray();
+                //self.query_facets_checked = ko.observableArray();
                 
                 // debugging
                 self.debug_text = ko.observable("");

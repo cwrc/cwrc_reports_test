@@ -26,9 +26,12 @@
       The 'apos' and '{}' are required at this stage of development.
       </p>
       <div id="cwrc_tas_query">
-        <p>Search( ' and }): <input data-bind="value: query_terms" /></p>
-          <p><button data-bind="click: runQuery">run</button></p>
-          <p><span data-bind="text: debug_text" /></p>
+        <p>Search( ' and }): <input data-bind="value: query_terms"></input></p>
+        <p>
+          <button data-bind="click: runQuery">run</button>
+          <span data-bind="text: debug_text"></span>
+          <p>Nest test: <input data-bind="value: query_elements"></input><p>
+        </p>
       </div>
 
       <div id="cwrc_tas_results">

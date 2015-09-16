@@ -26,6 +26,7 @@ function cwrcTagAwareSearchAPI(url, jq) {
             data: {
                 QRY_TERMS: queryObj.query_terms
                 , QRY_FACETS: queryObj.serializeCBData()
+                , QRY_ELEMENTS: queryObj.query_elements
             },
             success : function(data) {
                 result = data;
@@ -56,6 +57,7 @@ function cwrcTagAwareSearchAPI(url, jq) {
             data: {
                 QRY_TERMS: queryObj.query_terms
                 , QRY_FACETS: queryObj.serializeCBData()
+                , QRY_ELEMENTS: queryObj.query_elements
             },
             success : function(data) {
                 result = data;
