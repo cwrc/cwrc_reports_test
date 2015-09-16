@@ -23,7 +23,7 @@ $(document).ready(
             self.init = function ()
             {
                 // query terms
-                self.query_terms = ko.observable("{'Pauline','Pauline'}");
+                self.query_terms = ko.observable("{&apos;Pauline&apos;,&apos;Pauline&apos;}");
 
                 // query facets
                 self.query_facet_array = ko.observableArray();
@@ -106,7 +106,7 @@ $(document).ready(
                   {
                     tmp = tmp + ",";
                   }
-                  tmp = tmp + "\'" + (self.query_facet_array())[i].facetId() + "\'";
+                  tmp = tmp + "&apos;" + (self.query_facet_array())[i].facetId() + "&apos;";
                   foundChecked = true;
 
                 }

@@ -24,8 +24,8 @@ function cwrcTagAwareSearchAPI(url, jq) {
             async : true,
             dataType : "json",
             data: {
-                Q_QRY_TERMS: queryObj.query_terms
-                , Q_QRY_FACETS: queryObj.serializeCBData()
+                QRY_TERMS: queryObj.query_terms
+                , QRY_FACETS: queryObj.serializeCBData()
             },
             success : function(data) {
                 result = data;
