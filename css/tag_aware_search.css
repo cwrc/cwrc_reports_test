@@ -19,6 +19,10 @@ h2
    width: 80ex;
 }
 
+#tas_debug_text
+{
+  visibility: hidden;
+}
 
 /* RESULTS */
 
