@@ -106,12 +106,21 @@ $(document).ready(
                   {
                     tmp = tmp + ",";
                   }
+                  /* 2015-09-16 - simplify output
                   tmp = tmp + "&apos;" + (self.query_facet_array())[i].facetId() + "&apos;";
+                  */
+                  tmp = tmp + (self.query_facet_array())[i].facetId();
                   foundChecked = true;
 
                 }
               }
-              return '(' + tmp + ')';
+              /* 2015-09-16 - simplify output
+              if (tmp) 
+              { 
+                tmp = '(' + tmp + ')';
+              }
+              */
+              return tmp;
             }
 
         }
