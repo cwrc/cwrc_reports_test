@@ -1,10 +1,11 @@
 // the Tag Aware Search interface using KnockoutJS
 
 
-function facetItem(facet_id, labelStr)
+function facetItem(facetId, labelStr, hitCount)
 {
-  this.facetId = ko.observable(facet_id);
-  this.Label = ko.observable(labelStr);
+  this.facetId = ko.observable(facetId);
+  this.label = ko.observable(labelStr);
+  this.hitCount = ko.observable(hitCount);
   this.isSelected = ko.observable(false);
 }
 
@@ -63,28 +64,58 @@ $(document).ready(
             // callback
             // populated the "facets" component
             self.updateUI_tasResultFacets = function(data) {
+
+              // reset the hit counters in the facets
+              self.resetHitCounter(self.query_facet_array());
+
+              // update the facet array
               //data = '{ "k" : "2" , "l" : "3"  }';
               tmp = (typeof(data)=='string') ? $.parseJSON(data) : data;
               for (key in tmp)
               {
                 // does key already exist?
                 // indexOf doesn't work as it is not an array of atomics
-                var iskey = ko.utils.arrayFirst(
+                var obj = ko.utils.arrayFirst(
                     self.query_facet_array()
                     , function(item) {
                         return key === item.facetId();
                         }
                     );
                 // prevent duplication of key within array
-                if( !iskey )
+                if( !obj )
                 {
-                  var item = new facetItem(key, key + ' (' + tmp[key] + ')');
+                  var item = new facetItem(key, self.buildLabel(key, tmp[key]),tmp[key] );
                   self.query_facet_array.push(item);
                 }
+                else
+                {
+                  obj.hitCount(tmp[key]);
+                }
               }
+
+              // update the loading indicator
               self.tas_results_facets_loading(false);
+              
+              // update the debug location 
               $("#tas_facets_content_debug").html(JSON.stringify(tmp));
               //$("#tas_facets_content_debug").html(self.query_facet_array().serializeArray());
+            }
+
+            // reset the hit counter in the facet array
+            self.resetHitCounter = function(facetArray)
+            {
+              var len = facetArray.length;
+              for (var i=0; i<len; i++)
+              {
+                facetArray[i].hitCount(0);
+              }
+            }
+
+            // searialize the checkbox facets
+            self.buildLabel = function(key)
+            {
+              //return label + ' (' + hitCount + ')'
+              return key; 
             }
 
             // searialize the checkbox facets

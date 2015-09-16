@@ -36,7 +36,7 @@
             <ul data-bind="foreach: query_facet_array">
               <li>
               <input type="checkbox" data-bind="value: facetId, checked: isSelected, attr: { id: 'tas_facets_cb_' + facetId() }" />
-              <label data-bind="text: Label, attr: { for: 'tas_facets_cb_' + facetId() }"></label>
+              <label data-bind="text: label() + ' (' + hitCount() +')', attr: { for: 'tas_facets_cb_' + facetId() }"></label>
               </li>
             </ul>
             <div class="result_container" id="tas_facets_content_debug"></div>
