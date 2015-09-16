@@ -37,14 +37,9 @@ $(document).ready(
                 self.tas_results_facets_loading = ko.observable(false);
             }
 
-            self.toggleAssociation = function(item)
-            {
-              item.Selected(!(item.Selected()));
-              return true;
-            }
 
             // form button - run Reports
-            self.runReports = function() {
+            self.runQuery = function() {
                 self.debug_text( this.query_terms()!="" ? this.query_terms() : "");
 
                 // set loading indicator
