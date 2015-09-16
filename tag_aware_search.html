@@ -19,8 +19,14 @@
       <p>
       To see hits, search for "zzzMARKzzz"
       </p>
+      <p>
+      Note: the facets on the right-hand side have a 'document' count (i.e. number of Fedora Objects that match the query and contain the specificed element). Elements are not removed from the list until the page is reloaded (i.e. there is no clear/reset as I'm not sure how to impliment at this moment).  
+      </p>
+      <p>
+      The 'apos' and '{}' are required at this stage of development.
+      </p>
       <div id="cwrc_tas_query">
-          <p>Search: <input data-bind="value: query_terms" /></p>
+        <p>Search( ' and }): <input data-bind="value: query_terms" /></p>
           <p><button data-bind="click: runQuery">run</button></p>
           <p><span data-bind="text: debug_text" /></p>
       </div>
