@@ -6,7 +6,7 @@ function facetItem(facetId, labelStr, hitCount)
   this.facetId = ko.observable(facetId);
   this.label = ko.observable(labelStr);
   this.hitCount = ko.observable(hitCount);
-  this.isSelected = ko.observable(false);
+  this.isSelected = ko.observable(true);
 }
 
 
@@ -29,7 +29,7 @@ $(document).ready(
                 self.query_elements = ko.observable("");
 
                 // query facets
-                self.query_facet_array = ko.observableArray();
+                self.query_facet_array = ko.observableArray().extend({ rateLimit: { method: "notifyWhenChangesStop", timeout: 400 } });
                 //self.query_facets_checked = ko.observableArray();
                 
                 // debugging
@@ -52,6 +52,34 @@ $(document).ready(
                 // execute AJAX call
                 tasResultSearch.executeSearch(self.updateUI_tasResultSearch,self);
                 tasResultFacets.executeFacets(self.updateUI_tasResultFacets,self);
+            }
+
+            // form button - run clear facets 
+            self.clearFacets = function() {
+              self.query_facet_array().forEach(
+                  function (item)
+                  {
+                    item.isSelected(false);
+                  }
+                  )
+            }
+
+            // form button - run clear facets 
+            self.isFacet = function() {
+              var len =  self.query_facet_array().length;
+              var isFacet = false;
+              for (var i=0; i<len && !isFacet; i++)
+              {
+                if (self.query_facet_array()[i].isSelected())
+                {
+                  isFacet = true;
+                }
+              }
+              if (len==0)
+              {
+                isFacet = true;
+              }
+              return isFacet;
             }
 
             // callback

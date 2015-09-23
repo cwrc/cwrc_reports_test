@@ -19,6 +19,11 @@ h2
    width: 80ex;
 }
 
+#tas_error 
+{
+   color: red;
+}
+
 #tas_debug_text
 , #tas_facets_content_debug
 {

@@ -32,6 +32,7 @@
         <p>Search( ' and }): <input data-bind="value: query_terms"></input></p>
         <p>
           <button data-bind="click: runQuery">run</button>
+          <span id="tas_error" data-bind="ifnot: isFacet()">No facet selected!</span>
           <span id="tas_debug_text" data-bind="text: debug_text"></span>
           <p>Elmement Nest test (e.g. WRITING): <input data-bind="value: query_elements"></input><p>
         </p>
@@ -44,6 +45,7 @@
         </div>
         <div id="cwrc_tas_results_facets">
           <h3>Facets: <span class="cwrc_tas_loading" data-bind="visible: tas_results_facets_loading" ></span></h3>
+          <button data-bind="click: clearFacets">clear</button>
           <div class="result_container" id="tas_facets_content">
             <ul data-bind="foreach: query_facet_array">
               <li>
