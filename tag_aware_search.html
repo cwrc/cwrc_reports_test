@@ -17,10 +17,10 @@
       Note: reloading the page after a repository change should show the updated content within 1-2 sec. 
       </p>
       <p>
-      To see hits, search for "zzzMARKzzz". The result snippets generation is a quick-and-dirty  thrown together mechanism using the Orlando process of returning structural elements. The mechanism fails in that hits are repeated under certain contitions including when the snippet contains multiple "hits" and Orlando is not transferable to other schemas.  Also, the hit may need to be wellformed XML to allow styling like quotes, italics, and etc. specified as part of the Plot-IT project.  
+      To see hits, search for "zzzMARKzzz". The result snippets generation is a quick-and-dirty  thrown together mechanism using the Orlando process of returning structural elements. The mechanism fails in that hits are repeated under certain conditions including when the snippet contains multiple "hits" and Orlando is not transferable to other schemas.  Also, the hit may need to be well-formed XML to allow styling like quotes, italics, and etc. specified as part of the Plot-It project.  
       </p>
       <p>
-      Note: the facets on the right-hand side have a 'document' count (i.e. number of Fedora Objects that match the query and contain the specificed element). Elements are not removed from the list until the page is reloaded (i.e. there is no clear/reset as I'm not sure how to impliment at this moment).  The facets are treated as a boolean 'or' if multiple are checked.
+      Note: the facets on the right-hand side have a 'document' count (i.e. number of Fedora Objects that match the query and contain the specified element). Elements are not removed from the list until the page is reloaded (i.e., there is no clear/reset as I'm not sure how to implement at this moment).  The facets are treated as a Boolean 'or' if multiple are checked.
       </p>
       <p>
       The search currently requires matches on all search terms within a proximity of 6 sentences, uses  stemming, diacritics insensitive, and case insensitive.  This can be changed. The sort is by 'score' but the snippet generation is conflicting with the 'marking' of the hits.
@@ -34,7 +34,7 @@
           <button data-bind="click: runQuery">run</button>
           <span id="tas_error" data-bind="ifnot: isFacet()">No facet selected!</span>
           <span id="tas_debug_text" data-bind="text: debug_text"></span>
-          <p>Elmement Nest test (e.g. WRITING): <input data-bind="value: query_elements"></input><p>
+          <p>Element Nest test (e.g., WRITING): <input data-bind="value: query_elements"></input><p>
         </p>
       </div>
 
