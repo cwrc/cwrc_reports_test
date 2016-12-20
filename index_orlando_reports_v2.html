@@ -1,0 +1,74 @@
+<html>
+	<head>		
+		<script src="lib/jquery-2.1.4.min.js"></script>
+		<script src="lib/knockout-3.3.0.js"></script>
+		<script src="js/orlando_reports_v2.js"></script>
+		<script src="js/cwrc-report-api.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="css/test.css">
+		
+	</head>
+    <body class="root">
+      <h1>Orlando CAS - Test</h1>
+      <p>
+        Attempt to create a process-oriented report to replace the functionally oriented set of reports used in the Doc Archive.  The aim is to give the person CAS'ing the doc all the information in one spot. Also, to create the page through a module set of components that can be reused elsewhere and to leverage an XML database to grab the important information. Does this work?
+      </p>
+      <p>
+      Based on the Orlando CAS worksheet - <a href="https://docs.google.com/document/d/1f2P4ifk6q-ULoiekXAAWxpw44qWb8RM74m3S7IXhBjQ/edit" target="_blank">link</a>. Does not yet include all functionality of the corresponding Doc Archive reports - please feel free to comment on necessary or useful functionality (or unnecessary functionality). 
+      </p>
+      <p>
+      Note: reloading the page after a repository change should show the updated content within 1-2 sec. 
+      </p>
+        <div id="query">
+            <p>ID: <input data-bind="value: pid" /></p>
+            <p><button data-bind="click: runReports">run</button></p>
+            <p><span data-bind="text: pid_read" /></p>
+        </div>
+
+        <fieldset class="legend">
+          <legend>Legend: colours of text and thier meaning</legend>
+          <ul>
+            <li class="pub_c">No problems and workflow PUB-C</li>
+            <li class="cas_c">No problems but workflow only CAS</li>
+            <li class="non_pub_c">No problems but workflow not CAS or PUB</li>
+            <li class="warning">No workflow</li>
+            <li class="error">Error (details within output)</li>
+          <ul>
+          </ul>
+        </fieldset>
+        <fieldset>
+          <legend>Bibcit/Textscope Lookup: <span class="loading" data-bind="visible: rpt_bibcit_loading" ></span></legend>
+            <div class="result_container" id="div_bibcit_report"/>
+            </div>
+        </fieldset>
+        <fieldset>
+          <legend>Research Note Lookup: <span class="loading" data-bind="visible: rpt_researchnotes_loading" ></span></legend>
+            <div class="result_container" id="div_researchnote_report"/>
+            </div>
+        </fieldset>
+        <fieldset>
+          <legend>Core Tag Lookup: <span class="loading" data-bind="visible: rpt_coretags_loading" ><span></legend>
+              <div>
+                NOTE: Only person and org elements are checked against the entity list (i.e. place and title are not). Would using a different colour to indicate the referenced entity is not PUB-C be useful? 
+              </div>
+            <div class="result_container" id="div_coretags_report"/>
+            </div>
+        </fieldset>
+        <fieldset>
+          <legend>Quotes Lookup: <span class="loading" data-bind="visible: rpt_quotes_loading" ><span></legend>
+            <div class="result_container" id="div_quotes_report"/>
+            </div>
+        </fieldset>
+        <fieldset>
+          <legend>Chronstruct Bibcit Test: <span class="loading" data-bind="visible: rpt_chronstruct_bibcit_loading" ><span></legend>
+            <div class="result_container" id="div_chronstruct_bibcit_report"/>
+            </div>
+        </fieldset>
+        <fieldset>
+          <legend>Workflow Lookup: <span class="loading" data-bind="visible: rpt_workflow_loading" ><span></legend>
+            <div class="result_container" id="div_workflow_report"/>
+            </div>
+        </fieldset>
+    </body>
+</html>
+
