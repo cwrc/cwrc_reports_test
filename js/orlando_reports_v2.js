@@ -13,7 +13,7 @@ $(document).ready(
         {
             self = this;
             //FEDORA PID form element
-            self.pid = ko.observable("orlando:9f0c5add-7167-41bd-8111-77e0cff09ed5");
+            self.pid = ko.observable("orlando:b4859cdd-8c58-46e9-bf2a-28bf8090fcbc");
             // debugging
             self.pid_read = ko.observable("");
 
