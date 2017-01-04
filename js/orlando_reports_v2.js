@@ -8,6 +8,7 @@ $(document).ready(
         var cwrcReportsQuotes = new cwrcReportsAPI(server_base+'orlando_quotes_lookup.xq', $);
         var cwrcReportsCoreTags = new cwrcReportsAPI(server_base+'orlando_core_tags_lookup.xq', $);
         var cwrcReportsChronstructBibcits = new cwrcReportsAPI(server_base+'orlando_chronstruct_bibcit_test.xq', $);
+        var cwrcReportsEAPTest = new cwrcReportsAPI(server_base+'misc_test_eap_link.eq', $);
 
         function viewModel() 
         {
@@ -24,6 +25,7 @@ $(document).ready(
             self.rpt_quotes_loading = ko.observable(false);
             self.rpt_coretags_loading = ko.observable(false);
             self.rpt_chronstruct_bibcit_loading = ko.observable(false);
+            self.rpt_eap_test_loading = ko.observable(false);
 
             // form button - run Reports
             self.runReports = function() {
@@ -36,6 +38,7 @@ $(document).ready(
                 self.rpt_quotes_loading(true);
                 self.rpt_coretags_loading(true);
                 self.rpt_chronstruct_bibcit_loading(true);
+                self.rpt_eap_test_loading(true);
 
                 // execute AJAX call
                 cwrcReportsBibcit.executeReport(self.updateUI_BibcitReport,self);
@@ -44,6 +47,7 @@ $(document).ready(
                 cwrcReportsQuotes.executeReport(self.updateUI_QuotesReport,self);
                 cwrcReportsCoreTags.executeReport(self.updateUI_CoreTagsReport,self);
                 cwrcReportsChronstructBibcits.executeReport(self.updateUI_ChronstructBibcitsReport,self);
+                cwrcReportsEAPTest.executeReport(self.updateUI_EAPTestReport,self);
             }
 
             // callback
@@ -90,6 +94,13 @@ $(document).ready(
               tmpXML = (typeof(data)=='string') ? data : xmlToString(data);
               self.rpt_chronstruct_bibcit_loading(false);
               $("#div_chronstruct_bibcit_report").html(tmpXML);
+            }
+
+            // callback
+            self.updateUI_EAPTestReport = function(data) {
+              tmpXML = (typeof(data)=='string') ? data : xmlToString(data);
+              self.rpt_eap_test_loading(false);
+              $("#div_eap_test_report").html(tmpXML);
             }
 
 
