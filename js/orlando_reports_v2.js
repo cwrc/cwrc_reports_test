@@ -1,7 +1,7 @@
 $(document).ready(
     function(){
 
-        var server_base = 'http://cwrc-dev-05.srv.ualberta.ca/islandora/cwrc_xmldb/v1/';
+        var server_base = '/islandora/cwrc_xmldb/v1/';
         var cwrcReportsBibcit = new cwrcReportsAPI(server_base+'orlando_bibcit_lookup.xq', $);
         var cwrcReportsResearchnotes = new cwrcReportsAPI(server_base+'orlando_researchnotes_lookup.xq', $);
         var cwrcReportsWorkflow = new cwrcReportsAPI(server_base+'orlando_workflow_new.xq', $);

@@ -14,8 +14,8 @@ function facetItem(facetId, labelStr, hitCount)
 $(document).ready(
     function(){
 
-        var tasResultSearch = new cwrcTagAwareSearchAPI('http://cwrc-dev-01.srv.ualberta.ca/islandora/cwrc_xmldb/v1/xml_tag_search.xq', $);
-        var tasResultFacets = new cwrcTagAwareSearchAPI('http://cwrc-dev-01.srv.ualberta.ca/islandora/cwrc_xmldb/v1/xml_tag_search_facets.xq', $);
+        var tasResultSearch = new cwrcTagAwareSearchAPI('/islandora/cwrc_xmldb/v1/xml_tag_search.xq', $);
+        var tasResultFacets = new cwrcTagAwareSearchAPI('/islandora/cwrc_xmldb/v1/xml_tag_search_facets.xq', $);
 
        function viewModel() 
        {
